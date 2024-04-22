@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RestaurantProject.DataAccessLayer.Concrete;
 
@@ -11,9 +12,10 @@ using RestaurantProject.DataAccessLayer.Concrete;
 namespace RestaurantProject.DataAccessLayer.Migrations
 {
     [DbContext(typeof(RestaurantProjectContext))]
-    partial class RestaurantProjectContextModelSnapshot : ModelSnapshot
+    [Migration("20240422222648_mig_add_contact_new_columns")]
+    partial class mig_add_contact_new_columns
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
