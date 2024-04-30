@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RestaurantProject.DataAccessLayer.Concrete;
 
@@ -11,9 +12,10 @@ using RestaurantProject.DataAccessLayer.Concrete;
 namespace RestaurantProject.DataAccessLayer.Migrations
 {
     [DbContext(typeof(RestaurantProjectContext))]
-    partial class RestaurantProjectContextModelSnapshot : ModelSnapshot
+    [Migration("20240430153947_mig_add_notification_icon")]
+    partial class mig_add_notification_icon
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
