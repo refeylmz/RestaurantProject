@@ -89,7 +89,6 @@ namespace RestaurantProjectApi.Hubs
             var values = _bookingService.TGetListAll();
             await Clients.All.SendAsync("ReceiveBookingList",values);
         }
-
         public async Task SendNotification()
         {
             var value = _notificationService.TNotificationCountByStatusFalse();
@@ -98,7 +97,11 @@ namespace RestaurantProjectApi.Hubs
             var notificationListByFalse = _notificationService.TGetAllNotificationByFalse();
             await Clients.All.SendAsync("ReceiveNotificationListByFalse", notificationListByFalse);
         }
-
+        public async Task GetMenuTableStatus()
+        {
+            var value = _menuTableService.TGetListAll();
+            await Clients.All.SendAsync("ReceiveMenuTableStatus",value);
+        }
 
 
 
