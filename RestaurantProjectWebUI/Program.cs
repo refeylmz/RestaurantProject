@@ -1,6 +1,11 @@
+using RestaurantProject.DataAccessLayer.Concrete;
+using RestaurantProject.EntityLayer.Entities;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddDbContext<RestaurantProjectContext>();
+builder.Services.AddIdentity<AppUser,AppRole>().AddEntityFrameworkStores<RestaurantProjectContext>();
 builder.Services.AddHttpClient();
 builder.Services.AddControllersWithViews();
 
