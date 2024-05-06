@@ -32,6 +32,7 @@ namespace RestaurantProjectApi.Controllers
                 Name = createBookingDto.Name,
                 PersonCount = createBookingDto.PersonCount,
                 Phone = createBookingDto.Phone,
+                Description = createBookingDto.Description
             };
             _bookingService.TAdd(booking);
             return Ok("Rezervasyon Yapıldı");
@@ -56,6 +57,7 @@ namespace RestaurantProjectApi.Controllers
                 PersonCount = updateBookingDto.PersonCount,
                 Phone = updateBookingDto.Phone,
                 Date = updateBookingDto.Date,
+                Description = updateBookingDto.Description
             };
             _bookingService.TUpdate(booking);
             return Ok("Rezervasyon Güncellendi");
@@ -68,12 +70,19 @@ namespace RestaurantProjectApi.Controllers
             return Ok(value);
         }
 
+        [HttpGet("BookingStatusApproved/{id}")]
+        public IActionResult BookingStatusApproved(int id)
+        {
+            _bookingService.BookingStatusApproved(id);
+            return Ok("Rezervasyon Açıklaması Değiştirildi");
+        }
 
-
-
-
-
-
+        [HttpGet("BookingStatusCancelled/{id}")]
+        public IActionResult BookingStatusCancelled(int id)
+        {
+            _bookingService.BookingStatusCancelled(id);
+            return Ok("Rezervasyon Açıklaması Değiştirildi");
+        }
 
 
 

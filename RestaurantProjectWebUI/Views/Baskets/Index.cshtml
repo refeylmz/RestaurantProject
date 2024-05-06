@@ -45,7 +45,7 @@
                             <th>Sil</th>
                         </tr>
                     </thead>
-                    @foreach (var item in Model)
+@*                     @foreach (var item in Model)
                     {
                         basketTotalPrice = Model.Sum(x => x.Price);
                         tax = basketTotalPrice / 100 * 10;
@@ -64,7 +64,36 @@
                             </tr>
                         </tbody>
 
+                    }  *@
+
+
+                    @foreach (var group in Model.GroupBy(x => x.ProductName))
+                    {
+                        var item = group.First(); // Sadece ilk öğeyi alıyoruz, çünkü ürün adı aynı olduğunda fiyat ve diğer bilgiler de aynı olmalıdır.
+                        var totalCount = group.Sum(x => x.Count);
+                        var totalPrice = item.Price * totalCount;
+
+                        basketTotalPrice += totalPrice;
+                        tax = basketTotalPrice / 100 * 10;
+                        basketTotalPriceWithTax = basketTotalPrice + tax;
+                        count++;
+
+                        <tbody class="align-middle">
+                            <tr>
+                                <td class="align-middle">@count</td>
+                                <td class="align-middle">@item.ProductName</td>
+                                <td class="align-middle">@totalCount</td>
+                                <td class="align-middle">@item.Price</td>
+                                <td class="align-middle">@totalPrice</td>
+                                <td class="align-middle btn-delete">
+                                    <a class="btn btn-sm btn-danger" href="/Baskets/DeleteBasket/@item.BasketID">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
                     }
+
                 </table>
             </div>
             <div class="col-lg-4">
@@ -85,7 +114,7 @@
                             <h6><span id="totalprice">@basketTotalPrice</span>₺</h6>
                         </div>
                         <div class="d-flex justify-content-between">
-                            <h6 class="font-weight-medium">KDV Oranı</h6>
+                            <h6 class="font-weight-medium">KDV Oranı(%10)</h6>
                             <h6 id="kdv" class="font-weight-medium">@tax ₺</h6>
                         </div>
                         <br />

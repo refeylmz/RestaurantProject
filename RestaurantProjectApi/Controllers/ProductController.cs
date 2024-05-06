@@ -106,7 +106,7 @@ namespace RestaurantProjectApi.Controllers
                 Price = createProductDto.Price,
                 ProductName = createProductDto.ProductName,
                 ProductStatus = createProductDto.ProductStatus,
-                CategoryID = createProductDto.CategoryID,
+                CategoryID = createProductDto.CategoryID
             });
             return Ok("Ürün Bilgisi Eklendi");
         }
@@ -137,7 +137,7 @@ namespace RestaurantProjectApi.Controllers
                 Price = updateProductDto.Price,
                 ProductName = updateProductDto.ProductName,
                 ProductID = updateProductDto.ProductID,
-                CategoryID=updateProductDto.CategoryID,
+                CategoryID=updateProductDto.CategoryID
             });
             return Ok("Ürün Bilgisi Güncellendi");
         }

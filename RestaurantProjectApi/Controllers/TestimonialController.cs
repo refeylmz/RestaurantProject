@@ -61,6 +61,7 @@ namespace RestaurantProjectApi.Controllers
         {
             _testimonialService.TUpdate(new Testimonial()
             {
+                TestimonialID= updateTestimonialDto.TestimonialID,
                 Title = updateTestimonialDto.Title,
                 Comment = updateTestimonialDto.Comment,
                 Status = updateTestimonialDto.Status,

@@ -22,8 +22,4 @@
     <ProjectReference Include="..\RestaurantProject.DtoLayer\RestaurantProject.DtoLayer.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\" />
-  </ItemGroup>
-
 </Project>

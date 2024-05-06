@@ -41,12 +41,18 @@
 						</div>
 						<div class="card-body">
 							<div class="form-group">
+								<label for="Description">Açıklama</label>
+								<input type="text" class="form-control" asp-for="Description" id="description">
+							</div>
+						</div>
+						<div class="card-body">
+							<div class="form-group">
 								<label for="Date">Rezervasyon Tarihi</label>
 								<input type="date" class="form-control" asp-for="Date" id="Date">
 							</div>
 						</div>
 						<div class="card-action">
-							<button class="btn btn-primary">Rezervasyonu Güncelle</button>
+							<button class="btn btn-success">Rezervasyonu Güncelle</button>
 						</div>
 					</div>
 				</form>

@@ -15,5 +15,21 @@ namespace RestaurantProject.DataAccessLayer.EntityFramework
         public EfBookingDal(RestaurantProjectContext context) : base(context)
         {
         }
+
+        public void BookingStatusApproved(int id)
+        {
+            using var context = new RestaurantProjectContext();
+            var values = context.Bookings.Find(id);
+            values.Description = "Rezervasyon Onaylandı";
+            context.SaveChanges();
+        }
+
+        public void BookingStatusCancelled(int id)
+        {
+            using var context = new RestaurantProjectContext();
+            var values = context.Bookings.Find(id);
+            values.Description = "Rezervasyon İptal Edildi";
+            context.SaveChanges();
+        }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RestaurantProjectWebUI.Dtos.SliderDtos
+namespace RestaurantProject.DtoLayer.SliderDto
 {
 	public class ResultSliderDto
 	{

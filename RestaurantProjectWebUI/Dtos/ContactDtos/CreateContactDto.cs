@@ -12,10 +12,10 @@ namespace RestaurantProjectWebUI.Dtos.ContactDtos
         public string Location { get; set; }
         public string Phone { get; set; }
         public string Mail { get; set; }
-        public string FooterTitle { get; set; }
+        public string FooterTitle { get; set; } // = "Efe's Restaurant";
         public string FooterDescription { get; set; }
-        public string OpenDays { get; set; }
-        public string OpenDaysDescription { get; set; }
-        public string OpenHours { get; set; }
+        public string OpenDays { get; set; }// = "Çalışma Saatlerimiz";
+        public string OpenDaysDescription { get; set; } //= "Haftanın 7 Günü Hizmetinizdeyiz";
+        public string OpenHours { get; set; } //= "Sabah 10:00- Akşam 23:59";
     }
 }
