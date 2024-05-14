@@ -82,9 +82,9 @@
                             <tr>
                                 <td class="align-middle">@count</td>
                                 <td class="align-middle">@item.ProductName</td>
-                                <td class="align-middle">@totalCount</td>
-                                <td class="align-middle">@item.Price</td>
-                                <td class="align-middle">@totalPrice</td>
+                                <td class="align-middle">@totalCount.ToString("N0")</td>
+                                <td class="align-middle">@item.Price.ToString("N2")</td>
+                                <td class="align-middle">@totalPrice.ToString("N2")</td>
                                 <td class="align-middle btn-delete">
                                     <a class="btn btn-sm btn-danger" href="/Baskets/DeleteBasket/@item.BasketID">
                                         <i class="fa fa-times"></i>
@@ -111,18 +111,18 @@
                     <div id="container" class="border-bottom pb-2">
                         <div class="d-flex justify-content-between mb-3">
                             <h6>Toplam Tutar</h6>
-                            <h6><span id="totalprice">@basketTotalPrice</span>₺</h6>
+                            <h6><span id="totalprice">@basketTotalPrice.ToString("N2")</span>₺</h6>
                         </div>
                         <div class="d-flex justify-content-between">
                             <h6 class="font-weight-medium">KDV Oranı(%10)</h6>
-                            <h6 id="kdv" class="font-weight-medium">@tax ₺</h6>
+                            <h6 id="kdv" class="font-weight-medium">@tax.ToString("N2") ₺</h6>
                         </div>
                         <br />
                     </div>
                     <div class="pt-2">
                         <div class="d-flex justify-content-between mt-2">
                             <h5>Toplam Tutar</h5>
-                            <h5><span id="totalpricewithkdv">@basketTotalPriceWithTax</span>₺</h5>
+                            <h5><span id="totalpricewithkdv">@basketTotalPriceWithTax.ToString("N2")</span>₺</h5>
                         </div>
                         <br />
                         <button id="btnchecked" class="btn btn-block btn-warning font-weight-bold my-3">Siparişi Tamamla</button>

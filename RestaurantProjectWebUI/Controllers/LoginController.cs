@@ -28,14 +28,19 @@ namespace RestaurantProjectWebUI.Controllers
 			var result = await _signInManager.PasswordSignInAsync(loginDto.Username, loginDto.Password, false, false);
 			if (result.Succeeded)
 			{
-				return RedirectToAction("Index","Default");
+				return RedirectToAction("Index","Category");
 			}
 			else
 			{
 				ModelState.AddModelError("", "Kullanıcı adı veya şifre hatalı!");
 				return View();
 			}
+		}
 
+		public async Task<IActionResult> LogOut()
+		{
+			await _signInManager.SignOutAsync();
+			return RedirectToAction("Index","Login");
 		}
 	}
 }

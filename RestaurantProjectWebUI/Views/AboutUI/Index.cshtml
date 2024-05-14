@@ -1,0 +1,53 @@
+﻿
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+
+@await Component.InvokeAsync("_UILayoutHeadComponentPartial")
+
+<body class="sub_page">
+    @await Component.InvokeAsync("_AboutUINavbarComponentPartial")
+
+    <!-- about section -->
+
+    <section class="about_section layout_padding">
+        <div class="container  ">
+            
+                
+
+            <div class="row">
+                <div class="col-md-6 ">
+                    <div class="img-box">
+                        <img src="~/feane-1.0.0/images/about-img.png" alt="">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="detail-box">
+                        <div class="heading_container">
+                            <h2>
+                                    Biz Lezzet Ustalarıyız.
+                            </h2>
+                        </div>
+                        <p>
+                                Alanında birbirinden deneyimli şeflerle sizlere Güney Asya mutfağını Avrupa'nın essiz soslarıyla birleştirip İstanbul, Ankara ve Bursa şubelerimizde sunmanın haklı gururun ve mutluluğunu yaşıyoruz. Gün içinde ortalama 400 misafirimize lezzetlerimizi sunma imkanı yakalıyoruz. Haftalar öncesinden dolan masalarımız sayesinde sizlere daha kaliteli hizmet vermek ve en iyiyi ortaya çıkarmak için mücadelemiz sürüyor. Lütfen zaman ayırıp misafirimiz olun, size bir tatlı ikram edelim.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- end about section -->
+    @await Component.InvokeAsync("_UILayoutFooterComponentPartial")
+
+    @await Component.InvokeAsync("_UILayoutScriptComponentPartial")
+
+</body>
+
+</html>

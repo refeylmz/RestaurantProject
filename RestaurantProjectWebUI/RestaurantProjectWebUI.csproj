@@ -15,11 +15,18 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16" />
+    <PackageReference Include="NETCore.MailKit" Version="2.1.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\RestaurantProject.DataAccessLayer\RestaurantProject.DataAccessLayer.csproj" />
     <ProjectReference Include="..\RestaurantProject.EntityLayer\RestaurantProject.EntityLayer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="QRCoder">
+      <HintPath>..\..\..\..\Desktop\qrcdode\QRCoder.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
