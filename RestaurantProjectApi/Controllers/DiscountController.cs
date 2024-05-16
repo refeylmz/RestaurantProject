@@ -82,7 +82,7 @@ namespace RestaurantProjectApi.Controllers
         [HttpGet("ChangeStatusToFalse/{id}")]
         public IActionResult ChangeStatusToFalse(int id)
         {
-            _discountService.TChangeStatusToTrue(id);
+            _discountService.TChangeStatusToFalse(id);
             return Ok("Ürün İndirimi Pasif Hale Getirildi.");
         }
 

@@ -17,32 +17,39 @@
 
         <div class="filters-content">
             <div class="row grid">
+                @{
+                    var counter = 0;
+                }
                 @foreach (var item in Model)
                 {
-                    <div class="col-sm-6 col-lg-4 all pizza">
-                        <div class="box">
-                            <div>
-                                <div class="img-box">
-                                    <img src="@item.ImageUrl" alt="">
-                                </div>
-                                <div class="detail-box">
-                                    <h5>
-                                        @item.ProductName
-                                    </h5>
-                                    <p>
-                                        @item.Description
-                                    </p>
-                                    <div class="options">
-                                        <h6>
-                                            @item.Price ₺
-                                        </h6>
+                    if (counter < 9)
+                    {
+                        <div class="col-sm-6 col-lg-4 all pizza">
+                            <div class="box">
+                                <div>
+                                    <div class="img-box">
+                                        <img src="@item.ImageUrl" alt="">
+                                    </div>
+                                    <div class="detail-box">
+                                        <h5>
+                                            @item.ProductName
+                                        </h5>
+                                        <p>
+                                            @item.Description
+                                        </p>
+                                        <div class="options">
+                                            <h6>
+                                                @item.Price ₺
+                                            </h6>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
+                        counter++;
+                    }
                 }
+
             </div>
         </div>
         <div class="btn-box">
