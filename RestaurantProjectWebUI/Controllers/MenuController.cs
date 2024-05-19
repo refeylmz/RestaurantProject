@@ -9,6 +9,7 @@ namespace RestaurantProjectWebUI.Controllers
     public class MenuController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
+
         public MenuController(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
@@ -23,6 +24,7 @@ namespace RestaurantProjectWebUI.Controllers
             var values = JsonConvert.DeserializeObject<List<ResultProductDto>>(jsonData);
             return View(values);
         }
+
         [HttpPost]
         public async Task<IActionResult> AddBasket(int id)
         {
