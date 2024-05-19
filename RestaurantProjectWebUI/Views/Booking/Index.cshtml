@@ -34,44 +34,52 @@
                 connection.on("ReceiveBookingList", (value) => {
                     console.log(value);
                     let tablehtml = `<table class="table mt-3">
-                                    <thead>
-                                         <tr>
-                                               <th scope="col">#</th>
-                                               <th scope="col">Ad Soyad</th>
-                                               <th scope="col">Telefon</th>
-                                               <th scope="col">Kişi Sayısı</th>
-                                               <th scope="col">Rezervasyon Tarihi</th>
-                                               <th scope="col">Rezervasyon Durumu</th>
-                                               <th scope="col">Sil</th>
-                                               <th scope="col">Güncelle</th>
-                                               <th scope="col">Onayla</th>
-                                               <th scope="col">İptal Et</th>
-                                         </tr>
-                                    </thead>
-                                    <tbody>`
+                                                <thead>
+                                                     <tr>
+                                                           <th scope="col">#</th>
+                                                           <th scope="col">Ad Soyad</th>
+                                                           <th scope="col">Telefon</th>
+                                                           <th scope="col">Kişi Sayısı</th>
+                                                           <th scope="col">Rezervasyon Tarihi</th>
+                                                           <th scope="col">Rezervasyon Durumu</th>
+                                                           <th scope="col">Sil</th>
+                                                           <th scope="col">Güncelle</th>
+                                                           <th scope="col">Onayla</th>
+                                                           <th scope="col">İptal Et</th>
+                                                     </tr>
+                                                </thead>
+                                                <tbody>`
                     $.each(value, (index, item) => {
+                        //Tarih Düzenlemesi Başlangıç
+                        var splitDateT = item.date.split('T');
+                        console.log(splitDateT);
+                        var dateString = splitDateT[0];
+
+                        var dateYear = dateString.split('-')[0];
+                        var dateMonth = dateString.split('-')[1];
+                        var dateDay = dateString.split('-')[2];
+                        //Tarih Düzenlemesi Bitiş
+
                         let descriptionBgColor = "";
-                        if (item.description == "Rezervasyon Onaylandı")
-                        {
+                        if (item.description == "Rezervasyon Onaylandı") {
                             descriptionBgColor = "success";
-                        } else if (item.description == "Rezervasyon İptal Edildi") 
-                        {
+                        } else if (item.description == "Rezervasyon İptal Edildi") {
                             descriptionBgColor = "danger";
                         } else {
                             descriptionBgColor = "primary";
                         }
                         tablehtml += `<tr>
-                                                      <th>${index+1}</th>
-                                                      <td>${item.name}</td>
-                                                      <td>${item.phone}</td>
-                                                      <td>${item.personCount}</td>
-                                                      <td>${item.date}</td>
-                                                      <td><span class="badge badge-${descriptionBgColor}">${item.description}</span> </td>
-                                                      <td><a href="/Booking/DeleteBooking/${item.bookingID}" class="btn btn-outline-danger">Sil</a></td>
-                                                      <td><a href="/Booking/UpdateBooking/${item.bookingID}" class="btn btn-outline-warning">Güncelle</a></td>
-                                                      <td><a href="/Booking/BookingStatusApproved/${item.bookingID}" class="btn btn-outline-success">Onayla</a></td>
-                                                      <td><a href="/Booking/BookingStatusCancelled/${item.bookingID}" class="btn btn-outline-dark">İptal Et</a></td>
-                                                      </tr>`
+                                                                  <th>${index + 1}</th>
+                                                                  <td>${item.name}</td>
+                                                                  <td>${item.phone}</td>
+                                                                  <td>${item.personCount}</td>
+                                                                  <td>${dateDay}/${dateMonth}/${dateYear}</td>
+                                                                  <td><span class="badge badge-${descriptionBgColor}">${item.description}</span> </td>
+                                                                  <td><a href="/Booking/DeleteBooking/${item.bookingID}" class="btn btn-outline-danger">Sil</a></td>
+                                                                  <td><a href="/Booking/UpdateBooking/${item.bookingID}" class="btn btn-outline-warning">Güncelle</a></td>
+                                                                  <td><a href="/Booking/BookingStatusApproved/${item.bookingID}" class="btn btn-outline-success">Onayla</a></td>
+                                                                  <td><a href="/Booking/BookingStatusCancelled/${item.bookingID}" class="btn btn-outline-dark">İptal Et</a></td>
+                                                                  </tr>`
                     });
                     tablehtml += "</tbody></table>";
                     $("#bookingList").html(tablehtml);
@@ -96,7 +104,7 @@
                         </div>
                         <div id="bookingList"></div>
                         <a href="/Booking/CreateBooking/" class="btn btn-outline-primary">Yeni Rezervasyon Oluştur</a>
-                        
+
                     </div>
                 </div>
             </div>

@@ -15,5 +15,6 @@ namespace RestaurantProjectWebUI.Dtos.BookingDtos
         public int PersonCount { get; set; }
         public DateTime Date { get; set; }
         public string Description { get; set; } = "Rezervasyon Alındı";
+        public string? IsMailInfo { get; set; }
     }
 }
