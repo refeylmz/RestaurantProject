@@ -31,19 +31,19 @@ namespace RestaurantProjectApi.Controllers
         }
 
         [HttpGet("ProductCount")]
-        public IActionResult ProductCount() 
+        public IActionResult ProductCount()
         {
             return Ok(_productService.TProductCount());
         }
 
-         [HttpGet("TotalPriceByDrinkCategory")]
-        public IActionResult TotalPriceByDrinkCategory() 
+        [HttpGet("TotalPriceByDrinkCategory")]
+        public IActionResult TotalPriceByDrinkCategory()
         {
             return Ok(_productService.TTotalPriceByDrinkCategory());
         }
-        
-         [HttpGet("TotalPriceBySaladCategory")]
-        public IActionResult TotalPriceBySaladCategory() 
+
+        [HttpGet("TotalPriceBySaladCategory")]
+        public IActionResult TotalPriceBySaladCategory()
         {
             return Ok(_productService.TTotalPriceBySaladCategory());
         }
@@ -53,7 +53,6 @@ namespace RestaurantProjectApi.Controllers
         {
             return Ok(_productService.TProductAvgPriceByHamburger());
         }
-
 
         [HttpGet("ProductCountByHamburger")]
         public IActionResult ProductCountByHamburger()
@@ -73,18 +72,11 @@ namespace RestaurantProjectApi.Controllers
             return Ok(_productService.TProductPriceAvg());
         }
 
-
-
         [HttpGet("ProductPriceBySteakBurger")]
         public IActionResult ProductPriceBySteakBurger()
         {
             return Ok(_productService.TProductPriceBySteakBurger());
         }
-
-
-
-
-
 
         [HttpGet("ProductNameByMinPrice")]
         public IActionResult ProductNameByMinPrice()
@@ -92,20 +84,14 @@ namespace RestaurantProjectApi.Controllers
             return Ok(_productService.TProductNameByMinPrice());
         }
 
-
         [HttpGet("ProductNameByMaxPrice")]
         public IActionResult ProductNameByMaxPrice()
         {
             return Ok(_productService.TProductNameByMaxPrice());
         }
 
-
-
-
-
-
         [HttpGet("ProductListWithCategory")]
-        public IActionResult ProductListWithCategory() 
+        public IActionResult ProductListWithCategory()
         {
             var context = new RestaurantProjectContext();
             var values = context.Products.Include(x => x.Category).Select(y => new ResultProductWithCategory
@@ -162,7 +148,7 @@ namespace RestaurantProjectApi.Controllers
                 Price = updateProductDto.Price,
                 ProductName = updateProductDto.ProductName,
                 ProductID = updateProductDto.ProductID,
-                CategoryID=updateProductDto.CategoryID
+                CategoryID = updateProductDto.CategoryID
             });
             return Ok("Ürün Bilgisi Güncellendi");
         }
