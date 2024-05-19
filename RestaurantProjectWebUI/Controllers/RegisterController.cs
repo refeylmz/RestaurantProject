@@ -17,14 +17,17 @@ namespace RestaurantProjectWebUI.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(string key)
         {
+            HttpContext.Session.SetString("MyTableKey", key);
+            
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> Index(RegisterDto registerDto)
         {
+
             var appUser = new AppUser()
             {
                 Name = registerDto.Name,

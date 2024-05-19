@@ -45,12 +45,14 @@ namespace RestaurantProjectApi.Controllers
         [HttpPost]
         public IActionResult CreateBasket(CreateBasketDto createBasketDto)
         {
+          
+
             using var context = new RestaurantProjectContext();
             _basketService.TAdd(new Basket()
             {
                 ProductID = createBasketDto.ProductID,
                 Count = 1,
-                MenuTableID = 4,
+                MenuTableID = createBasketDto.TableID,
                 Price = context.Products.Where(x => x.ProductID == createBasketDto.ProductID).Select(y => y.Price).FirstOrDefault(),
                 TotalPrice = 0,
 

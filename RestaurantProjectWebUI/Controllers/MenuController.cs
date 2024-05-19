@@ -26,8 +26,12 @@ namespace RestaurantProjectWebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> AddBasket(int id)
         {
+            var tableid = HttpContext.Session.GetString("MyTableKey");
+            int tableIDD = Convert.ToInt32(tableid);
             CreateBasketDto createBasketDto = new CreateBasketDto();
             createBasketDto.ProductID = id;
+            createBasketDto.TableID = tableIDD;
+
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createBasketDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");

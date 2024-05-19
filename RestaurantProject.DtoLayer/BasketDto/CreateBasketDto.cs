@@ -12,6 +12,7 @@ namespace RestaurantProject.DtoLayer.BasketDto
         public decimal Count { get; set; }
         public decimal TotalPrice { get; set; }
         public int ProductID { get; set; }
+        public int TableID { get; set; }
         public int MenuTableID { get; set; }
     }
 }
