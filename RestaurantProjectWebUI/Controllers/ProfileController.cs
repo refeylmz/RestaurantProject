@@ -24,6 +24,7 @@ namespace RestaurantProjectWebUI.Controllers
         {
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
             var userId = user.Id;
+
             var orders = await _context.Orders.Where(x=>x.AppUserId == userId).ToListAsync();
             var bookings = await _context.Bookings.Where(x=>x.Mail== user.Email).ToListAsync();
             ProfileViewModel profileViewModel = new ProfileViewModel();
@@ -31,6 +32,7 @@ namespace RestaurantProjectWebUI.Controllers
             profileViewModel.BookingList= bookings;
             profileViewModel.Name = user.Name + " " + user.Surname;
             return View(profileViewModel);
+
         }
     }
 }

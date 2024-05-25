@@ -19,7 +19,7 @@ namespace RestaurantProject.DataAccessLayer.EntityFramework
         public int ActiveOrderCount()
         {
             using var context = new RestaurantProjectContext();
-            return context.Orders.Where(x => x.Description =="Müşteri Masada").Count();
+            return context.Orders.Where(x => x.Description == "Müşteri Masada").Count();
         }
 
         public decimal LastOrderPrice()
@@ -39,5 +39,5 @@ namespace RestaurantProject.DataAccessLayer.EntityFramework
             return context.Orders.Count();
         }
     }
-   
+
 }

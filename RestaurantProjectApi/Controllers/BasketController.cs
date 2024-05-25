@@ -19,8 +19,9 @@ namespace RestaurantProjectApi.Controllers
         {
             _basketService = basketService;
         }
+
         [HttpGet]
-        public IActionResult GetBasketByMenuTableID(int id) 
+        public IActionResult GetBasketByMenuTableID(int id)
         {
             var values = _basketService.TGetBasketByMenuTableNumber(id);
             return Ok(values);
@@ -35,18 +36,17 @@ namespace RestaurantProjectApi.Controllers
                 BasketID = z.BasketID,
                 Count = z.Count,
                 MenuTableID = z.MenuTableID,
-                Price= z.Price,
+                Price = z.Price,
                 ProductID = z.ProductID,
-                TotalPrice= z.TotalPrice,
-                ProductName=z.Product.ProductName
-            }).ToList();  
+                TotalPrice = z.TotalPrice,
+                ProductName = z.Product.ProductName
+            }).ToList();
             return Ok(values);
         }
+
         [HttpPost]
         public IActionResult CreateBasket(CreateBasketDto createBasketDto)
         {
-          
-
             using var context = new RestaurantProjectContext();
             _basketService.TAdd(new Basket()
             {
@@ -59,6 +59,7 @@ namespace RestaurantProjectApi.Controllers
             });
             return Ok();
         }
+
         [HttpDelete("{id}")]
         public IActionResult DeleteBasket(int id)
         {
@@ -67,6 +68,22 @@ namespace RestaurantProjectApi.Controllers
             return Ok("Seçilen Ürün Sepetten Silindi");
         }
 
+        [HttpPost("{AddBasketDiscount}")]
+        public IActionResult AddBasketDiscount(CreateBasketDto createBasketDto)
+        {
+            using var context = new RestaurantProjectContext();
 
+            _basketService.TAdd(new Basket()
+            {
+                ProductID = createBasketDto.ProductID,
+                Count = 1,
+                MenuTableID = createBasketDto.TableID,
+                Price = createBasketDto.Price,
+                TotalPrice = 0,
+
+            });
+
+            return Ok();
+        }
     }
 }

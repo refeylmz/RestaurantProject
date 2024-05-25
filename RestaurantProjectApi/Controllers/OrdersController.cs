@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using RestaurantProject.BusinessLayer.Abstract;
+using RestaurantProject.DtoLayer.OrderDto;
 
 namespace RestaurantProjectApi.Controllers
 {
@@ -9,14 +10,23 @@ namespace RestaurantProjectApi.Controllers
     public class OrdersController : ControllerBase
     {
         private readonly IOrderService _orderService;
+        private readonly IMapper _mapper;
 
-        public OrdersController(IOrderService orderService)
+        public OrdersController(IOrderService orderService, IMapper mapper)
         {
             _orderService = orderService;
+            _mapper = mapper;
+        }
+
+        [HttpGet]
+        public IActionResult OrderList()
+        {
+            var value = _mapper.Map<List<ResultOrderDto>>(_orderService.TGetListAll().OrderByDescending(x => x.OrderDate));
+            return Ok(value);
         }
 
         [HttpGet("TotalOrderCount")]
-        public IActionResult TotalOrderCount() 
+        public IActionResult TotalOrderCount()
         {
             return Ok(_orderService.TTotalOrderCount());
         }
