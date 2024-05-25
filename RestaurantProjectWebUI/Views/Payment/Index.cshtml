@@ -1,0 +1,113 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+
+@await Component.InvokeAsync("_UILayoutHeadComponentPartial")
+
+<body class="sub_page">
+
+    @await Component.InvokeAsync("_PaymentNavbarComponentPartial")
+
+    <!-- book section -->
+    <section class="book_section layout_padding">
+        <div class="container">
+            <div class="heading_container">
+                <h2>
+                    ÖDEME EKRANI
+                </h2>
+            </div>
+            <div class="row">
+                <div class="col-md-8 mb-3">
+                    <label>Ödenecek Tutar</label>
+                    <input type="text" class="form-control" placeholder="Ödenecek Tutar" value="" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 mb-3">
+                    <label>Kart Sahibi</label>
+                    <input type="text" class="form-control" placeholder="Ad Soyad" value="" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 mb-3">
+                    <label>Kart Numarası</label>
+                    <input type="text" id="card-input" class="form-control" placeholder="Kart Numarası" value="" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label>Son Kullanma Tarihi (Ay)</label>
+                    <input type="text" class="form-control" placeholder="Ay" value="" />
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label>Son Kullanma Tarihi (Yıl)</label>
+                    <input type="text" class="form-control" placeholder="Yıl" value="" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 mb-3">
+                    <label>CVC</label>
+                    <input type="text" id="cvc-input" class="form-control" placeholder="CVC" value="" />
+                </div>
+            </div>
+            <hr class="mb-4" />
+
+            <div class="row">
+                <div class="col-md-8 mb-3">
+                    <button type="submit" class="btn btn-success btn-lg btn-block">Ödemeyi Tamamla</button>
+
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+        </div>
+    </section>
+    <!-- end book section -->
+    <!-- footer section -->
+    @await Component.InvokeAsync("_UILayoutFooterComponentPartial")
+    <!-- footer section -->
+    <!-- jQery -->
+    @await Component.InvokeAsync("_UILayoutScriptComponentPartial")
+
+
+
+
+
+    @* 3 haneli giriş script kodu *@
+    <script>
+        document.getElementById('cvc-input').addEventListener('input', function (e) {
+            let value = e.target.value;
+            // Sadece rakamları kontrol eder ve uzunluğu sınırlar
+            e.target.value = value.replace(/\D/g, '').slice(0, 3);
+        });
+    </script>
+    @* 16 haneli giriş script kodu *@
+    <script>
+        document.getElementById('card-input').addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, ''); // Sadece rakamları tut
+            value = value.slice(0, 16); // En fazla 16 rakam tut
+
+            // Her 4 haneden sonra bir boşluk ekle
+            let formattedValue = '';
+            for (let i = 0; i < value.length; i += 4) {
+                if (i > 0) {
+                    formattedValue += ' ';
+                }
+                formattedValue += value.slice(i, i + 4);
+            }
+
+            e.target.value = formattedValue;
+        });
+    </script>
+</body>
+
+</html>
