@@ -6,5 +6,6 @@ namespace RestaurantProjectWebUI.Models
     {
         public List<Order> OrderList { get; set; }
         public List<Booking> BookingList { get; set; }
+        public string Name { get; set; }
     }
 }

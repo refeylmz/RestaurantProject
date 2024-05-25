@@ -1,4 +1,6 @@
-﻿@{
+﻿@model RestaurantProjectWebUI.Models.ProfileViewModel
+
+@{
     Layout = null;
 
 }
@@ -30,7 +32,7 @@
 
     <div class="container-fluid">
         <div class="row px-xl-5">
-            <div class="col-lg-6 table-responsive mb-5">
+            @* <div class="col-lg-6 table-responsive mb-5">
                 <nav class="breadcrumb bg-dark mb-30">
                    
                     <a class="breadcrumb-item text-white">Siparişleriniz</a>
@@ -59,10 +61,10 @@
 
 
                 </table>
-            </div>
-            <div class="col-lg-6 table-responsive mb-5">
+            </div> *@
+            <div class="col-lg-12 table-responsive mb-5">
+                <h5 class="text-center">Hoş Geldiniz @Model.Name</h5>
                 <nav class="breadcrumb bg-dark mb-30">
-                    
                     <a class="breadcrumb-item text-white">Rezervasyonlarınız</a>
                 </nav>
                 <table class="table table-light table-borderless table-hover text-center mb-0">
@@ -70,21 +72,21 @@
                         <tr>
                             <th>#</th>
                             <th>Tarih</th>
-                            <th>Masa Adı</th>
                             <th>Kişi Sayısı</th>
                             <th>Rezervasyon Durumu</th>
                         </tr>
                     </thead>
 
                     <tbody class="align-middle">
+                        @foreach(var item in Model.BookingList){
                         <tr>
                             <td class="align-middle">1</td>
-                            <th class="align-middle">2024-05-08</th>
-                            <td class="align-middle">Masa 8</td>
-                            <td class="align-middle">2</td>
-                            <td class="align-middle">Rezervasyon Onaylandı</td>
+                            <th class="align-middle">@((item.Date).ToShortDateString())</th>
+                            <td class="align-middle">@item.PersonCount</td>
+                            <td class="align-middle">@item.Description</td>
 
                         </tr>
+                        }
                     </tbody>
 
 

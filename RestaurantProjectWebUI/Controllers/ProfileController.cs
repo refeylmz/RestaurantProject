@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RestaurantProject.DataAccessLayer.Concrete;
 using RestaurantProject.EntityLayer.Entities;
+using RestaurantProjectWebUI.Models;
 
 namespace RestaurantProjectWebUI.Controllers
 {
@@ -23,10 +24,15 @@ namespace RestaurantProjectWebUI.Controllers
         {
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
             var userId = user.Id;
-            var orders = await _context.Orders.FirstOrDefaultAsync(x => x.AppUserId == userId);
-            var bookings = await _context.Bookings.Where(x => x.Mail == user.Email).ToListAsync();
 
-            return View();
+            var orders = await _context.Orders.Where(x=>x.AppUserId == userId).ToListAsync();
+            var bookings = await _context.Bookings.Where(x=>x.Mail== user.Email).ToListAsync();
+            ProfileViewModel profileViewModel = new ProfileViewModel();
+            profileViewModel.OrderList = orders;
+            profileViewModel.BookingList= bookings;
+            profileViewModel.Name = user.Name + " " + user.Surname;
+            return View(profileViewModel);
+
         }
     }
 }
