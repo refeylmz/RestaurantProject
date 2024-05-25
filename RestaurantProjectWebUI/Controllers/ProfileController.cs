@@ -23,8 +23,8 @@ namespace RestaurantProjectWebUI.Controllers
         {
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
             var userId = user.Id;
-            var orders = await _context.Orders.FirstOrDefaultAsync(x=>x.AppUserId == userId);
-            var bookings = await _context.Bookings.Where(x=>x.Mail== user.Email).ToListAsync();   
+            var orders = await _context.Orders.FirstOrDefaultAsync(x => x.AppUserId == userId);
+            var bookings = await _context.Bookings.Where(x => x.Mail == user.Email).ToListAsync();
 
             return View();
         }

@@ -1,0 +1,46 @@
+﻿@model List<RestaurantProjectWebUI.Dtos.OrderDtos.ResultOrderDto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">Sipariş İşlemleri</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Ödenmiş Sipariş Listesi</div>
+                    </div>
+                    <div class="card-body">
+                        <table class="table mt-3">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Masa Adı</th>
+                                    <th scope="col">Açıklama</th>
+                                    <th scope="col">Sipariş Tarihi</th>
+                                    <th scope="col">Toplam Ücret</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <th>@item.OrderID</th>
+                                        <td>@item.TableNumber</td>
+                                        <td>@item.Description</td>
+                                        <td>@item.OrderDate.ToShortDateString()</td>
+                                        <td>@item.TotalPrice</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
