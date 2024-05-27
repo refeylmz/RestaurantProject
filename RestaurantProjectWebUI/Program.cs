@@ -12,7 +12,7 @@ var requireAuthorizePolicy = new AuthorizationPolicyBuilder().RequireAuthenticat
 
 // Add services to the container.
 builder.Services.AddDbContext<RestaurantProjectContext>();
-builder.Services.AddIdentity<AppUser,AppRole>().AddEntityFrameworkStores<RestaurantProjectContext>();
+builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<RestaurantProjectContext>();
 builder.Services.AddHttpClient();
 builder.Services.AddControllersWithViews(opt =>
 {
@@ -24,7 +24,12 @@ builder.Services.ConfigureApplicationCookie(opts =>
 {
     opts.LoginPath = "/Login/Index";
 });
-
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(500);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -42,7 +47,7 @@ app.UseRouting();
 app.UseAuthentication();
 
 app.UseAuthorization();
-
+app.UseSession();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

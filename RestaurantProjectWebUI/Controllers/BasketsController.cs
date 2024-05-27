@@ -14,8 +14,10 @@ namespace RestaurantProjectWebUI.Controllers
         }
         public async Task<IActionResult> Index()
         {
+            var tableid = HttpContext.Session.GetString("MyTableKey");
+            int tableIDD = Convert.ToInt32(tableid);
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7272/api/Basket/BasketListByMenuTableWithProductName?id=4");
+            var responseMessage = await client.GetAsync($"https://localhost:7272/api/Basket/BasketListByMenuTableWithProductName?id={tableIDD}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();

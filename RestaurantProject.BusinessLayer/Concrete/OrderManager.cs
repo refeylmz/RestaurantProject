@@ -40,7 +40,7 @@ namespace RestaurantProject.BusinessLayer.Concrete
 
         public List<Order> TGetListAll()
         {
-            throw new NotImplementedException();
+            return _orderDal.GetListAll();
         }
 
         public decimal TLastOrderPrice()
@@ -54,8 +54,9 @@ namespace RestaurantProject.BusinessLayer.Concrete
         }
 
         public int TTotalOrderCount()
-        {return _orderDal.TotalOrderCount();
-            
+        {
+            return _orderDal.TotalOrderCount();
+
         }
 
         public void TUpdate(Order entity)

@@ -16,5 +16,7 @@ namespace RestaurantProject.EntityLayer.Entities
         public DateTime OrderDate { get; set; }
         public decimal TotalPrice { get; set; }
         public List<OrderDetail> OrderDetails { get; set; }
+        public int AppUserId { get; set; }
+        public AppUser AppUser { get; set; }
     }
 }

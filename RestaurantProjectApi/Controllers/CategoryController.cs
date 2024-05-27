@@ -13,11 +13,13 @@ namespace RestaurantProjectApi.Controllers
     {
         private readonly ICategoryService _categoryService;
         private readonly IMapper _mapper;
+
         public CategoryController(ICategoryService categoryService, IMapper mapper)
         {
             _categoryService = categoryService;
             _mapper = mapper;
         }
+
         [HttpGet]
         public IActionResult CategoryList() 
         {
@@ -42,9 +44,6 @@ namespace RestaurantProjectApi.Controllers
         {
             return Ok(_categoryService.TPassiveCategoryCount());
         }
-
-
-
 
         [HttpPost]
         public IActionResult CreateCategory(CreateCategoryDto createCategoryDto)

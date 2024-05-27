@@ -1,4 +1,5 @@
 ﻿@model List<ResultProductDto>
+
 <section class="food_section layout_padding-bottom">
     <div class="container">
         <div class="heading_container heading_center">
@@ -8,11 +9,11 @@
         </div>
 
         <ul class="filters_menu">
-            <li class="active" data-filter="*">Tümü</li>
-            <li data-filter=".burger">Burger</li>
-            <li data-filter=".pizza">Pizza</li>
-            <li data-filter=".pasta">Makarna</li>
-            <li data-filter=".fries">Atıştırmalık</li>
+            <li class="active" data-filter="*" onclick="filterProducts('*')">Tümü</li>
+            <li data-filter=".burger" onclick="filterProducts('burger')">Burger</li>
+            <li data-filter=".pizza" onclick="filterProducts('pizza')">Pizza</li>
+            <li data-filter=".pasta" onclick="filterProducts('pasta')">Makarna</li>
+            <li data-filter=".desserts" onclick="filterProducts('fries')">Tatlılar</li>
         </ul>
 
         <div class="filters-content">
@@ -22,9 +23,37 @@
                 }
                 @foreach (var item in Model)
                 {
+                    string categoryClass = "";
+                    switch (item.CategoryID)
+                    {
+                        case 1:
+                            categoryClass = "burger";
+                            break;
+                        case 2:
+                            categoryClass = "pizza";
+                            break;
+                        case 3:
+                            categoryClass = "pasta";
+                            break;
+                        case 4:
+                            categoryClass = "fries";
+                            break;
+                        case 5:
+                            categoryClass = "salads";
+                            break;
+                        case 6:
+                            categoryClass = "drinks";
+                            break;
+                        case 7:
+                            categoryClass = "desserts";
+                            break;
+                        default:
+                            categoryClass = "";
+                            break;
+                    }
                     if (counter < 9)
                     {
-                        <div class="col-sm-6 col-lg-4 all pizza">
+                        <div class="col-sm-6 col-lg-4 all @categoryClass">
                             <div class="box">
                                 <div>
                                     <div class="img-box">
@@ -49,7 +78,6 @@
                         counter++;
                     }
                 }
-
             </div>
         </div>
         <div class="btn-box">
@@ -59,3 +87,16 @@
         </div>
     </div>
 </section>
+
+<script>
+    function filterProducts(category) {
+        var allProducts = document.querySelectorAll('.filters-content .all');
+        allProducts.forEach(function (product) {
+            if (category === '*' || product.classList.contains(category)) {
+                product.style.display = 'block';
+            } else {
+                product.style.display = 'none';
+            }
+        });
+    }
+</script>

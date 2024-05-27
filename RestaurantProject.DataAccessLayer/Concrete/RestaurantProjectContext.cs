@@ -13,7 +13,7 @@ namespace RestaurantProject.DataAccessLayer.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=DESKTOP-8TNLFTV\\SQLEXPRESS; initial Catalog=RestaurantProjectDb; integrated Security=True");
+            optionsBuilder.UseSqlServer("Server=EFRUN\\SQLEXPRESS; initial Catalog=RestaurantProjectDb; integrated Security=True");
         }
         public DbSet<About> Abouts { get; set; }
         public DbSet<Booking> Bookings { get; set; }
