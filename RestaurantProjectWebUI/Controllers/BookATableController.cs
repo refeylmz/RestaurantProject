@@ -41,7 +41,7 @@ namespace RestaurantProjectWebUI.Controllers
                     mimeMessage.To.Add(mailboxAddressTo);
 
                     var bodyBuilder = new BodyBuilder();
-                    bodyBuilder.TextBody = $"Merhaba {createBookingDto.Name}, \n{createBookingDto.Date} tarihine {createBookingDto.PersonCount} kişilik rezervasyonunuz bulunmaktadır.\nBizi tercih ettiğiniz için teşekkür ederiz." ;
+                    bodyBuilder.TextBody = $"Merhaba {createBookingDto.Name}, \n{createBookingDto.Date.ToShortDateString()} tarihine {createBookingDto.PersonCount} kişilik rezervasyonunuz bulunmaktadır.\nBizi tercih ettiğiniz için teşekkür ederiz." ;
                     mimeMessage.Body = bodyBuilder.ToMessageBody();
 
                     mimeMessage.Subject = "Efe's Restaurant Rezervasyon Bilgilendirme";

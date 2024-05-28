@@ -18,10 +18,8 @@ namespace RestaurantProjectWebUI.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index(string key)
+        public IActionResult Index()
         {
-            HttpContext.Session.SetString("MyTableKey", key);
-
             return View();
         }
 
