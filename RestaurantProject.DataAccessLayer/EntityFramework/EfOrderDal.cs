@@ -1,4 +1,5 @@
-﻿using RestaurantProject.DataAccessLayer.Abstract;
+﻿using Microsoft.EntityFrameworkCore;
+using RestaurantProject.DataAccessLayer.Abstract;
 using RestaurantProject.DataAccessLayer.Concrete;
 using RestaurantProject.DataAccessLayer.Repositories;
 using RestaurantProject.EntityLayer.Entities;
@@ -19,7 +20,14 @@ namespace RestaurantProject.DataAccessLayer.EntityFramework
         public int ActiveOrderCount()
         {
             using var context = new RestaurantProjectContext();
-            return context.Orders.Where(x => x.Description == "Müşteri Masada").Count();
+            return context.Orders.Where(x => x.Description == "1 Ödeme Alındı.").Count();
+        }
+
+        public List<Order> GetWithOrderDetails()
+        {
+            using var context = new RestaurantProjectContext();
+            var value = context.Orders.Include(o => o.OrderDetails).ThenInclude(p=>p.Product).ToList();
+            return value;
         }
 
         public decimal LastOrderPrice()

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using RestaurantProject.BusinessLayer.Abstract;
 using RestaurantProject.DtoLayer.OrderDto;
+using RestaurantProject.EntityLayer.Entities;
 
 namespace RestaurantProjectApi.Controllers
 {
@@ -9,6 +10,7 @@ namespace RestaurantProjectApi.Controllers
     [ApiController]
     public class OrdersController : ControllerBase
     {
+
         private readonly IOrderService _orderService;
         private readonly IMapper _mapper;
 
@@ -21,7 +23,7 @@ namespace RestaurantProjectApi.Controllers
         [HttpGet]
         public IActionResult OrderList()
         {
-            var value = _mapper.Map<List<ResultOrderDto>>(_orderService.TGetListAll().OrderByDescending(x => x.OrderDate));
+            var value = _mapper.Map<List<ResultOrderDto>>(_orderService.TGetWithOrderDetails().OrderByDescending(x => x.OrderDate));
             return Ok(value);
         }
 
@@ -47,6 +49,20 @@ namespace RestaurantProjectApi.Controllers
         public IActionResult TodayTotalPrice()
         {
             return Ok(_orderService.TTodayTotalPrice());
+        }
+
+        [HttpPost]
+        public IActionResult CreateOrder(CreateOrderDto createOrderDto)
+        {
+            _orderService.TAdd(new Order()
+            {
+                Description = createOrderDto.Description,
+                OrderDate = createOrderDto.OrderDate,
+                TotalPrice = createOrderDto.TotalPrice,
+                AppUserId = createOrderDto.AppUserId,
+                MenuTableID = createOrderDto.MenuTableID
+            });
+            return Ok("Sipariş Bilgisi Eklendi");
         }
 
 

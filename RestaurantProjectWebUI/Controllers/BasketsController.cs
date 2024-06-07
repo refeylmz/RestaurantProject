@@ -22,6 +22,11 @@ namespace RestaurantProjectWebUI.Controllers
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
                 var values = JsonConvert.DeserializeObject<List<ResultBasketDto>>(jsonData);
+                if (values != null && values.Count > 0)
+                {
+                    values.ForEach(v => v.MenuTableID = tableIDD);
+
+                }
                 return View(values);
             }
             return View();

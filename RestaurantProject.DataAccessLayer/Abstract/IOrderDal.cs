@@ -13,5 +13,6 @@ namespace RestaurantProject.DataAccessLayer.Abstract
         int ActiveOrderCount();
         decimal LastOrderPrice();
         decimal TodayTotalPrice();
+        List<Order> GetWithOrderDetails();
     }
 }

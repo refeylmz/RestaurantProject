@@ -13,5 +13,6 @@ namespace RestaurantProject.BusinessLayer.Abstract
         int TActiveOrderCount();
         decimal TLastOrderPrice();
         decimal TTodayTotalPrice();
+        List<Order> TGetWithOrderDetails();
     }
 }

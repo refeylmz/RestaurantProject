@@ -17,6 +17,7 @@ namespace RestaurantProjectWebUI.Controllers
 
         public async Task<IActionResult> Index()
         {
+            HttpContext.Session.SetString("MyTableKey", "1");
             var client = _httpClientFactory.CreateClient();
             var responseMessage = await client.GetAsync("https://localhost:7272/api/Product");
 

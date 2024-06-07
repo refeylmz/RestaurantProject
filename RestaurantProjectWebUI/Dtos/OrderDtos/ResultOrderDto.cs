@@ -1,4 +1,6 @@
-﻿namespace RestaurantProjectWebUI.Dtos.OrderDtos
+﻿using RestaurantProject.EntityLayer.Entities;
+
+namespace RestaurantProjectWebUI.Dtos.OrderDtos
 {
     public class ResultOrderDto
     {
@@ -8,5 +10,7 @@
         public DateTime OrderDate { get; set; }
         public decimal TotalPrice { get; set; }
         public int AppUserId { get; set; }
+        public int MenuTableID { get; set; }
+        public List<OrderDetail> OrderDetails { get; set; }
     }
 }

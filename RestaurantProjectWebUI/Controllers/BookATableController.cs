@@ -1,4 +1,5 @@
 ﻿using MailKit.Net.Smtp;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MimeKit;
 using Newtonsoft.Json;
@@ -7,6 +8,8 @@ using System.Text;
 
 namespace RestaurantProjectWebUI.Controllers
 {
+    [AllowAnonymous]
+
     public class BookATableController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;

@@ -9,7 +9,12 @@ namespace RestaurantProject.EntityLayer.Entities
 {
     public class Order
     {
+        public Order()
+        {
+                this.OrderDetails=new List<OrderDetail>();
+        }
         public int OrderID { get; set; }
+        public int MenuTableID { get; set; }
         public string TableNumber { get; set; }
         public string Description { get; set; }
         [Column(TypeName = "Date")]
@@ -18,5 +23,6 @@ namespace RestaurantProject.EntityLayer.Entities
         public List<OrderDetail> OrderDetails { get; set; }
         public int AppUserId { get; set; }
         public AppUser AppUser { get; set; }
+        public MenuTable MenuTable { get; set; }
     }
 }

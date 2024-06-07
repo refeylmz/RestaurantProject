@@ -5,6 +5,7 @@
     decimal basketTotalPrice = 0;
     decimal basketTotalPriceWithTax = 0;
     decimal tax = 0;
+    int menuTableID = Model.FirstOrDefault().MenuTableID;
 }
 
 <!DOCTYPE html>
@@ -15,7 +16,8 @@
 <body class="sub_page">
 
     @await Component.InvokeAsync("_MenuNavbarComponentPartial")
-    <br /><br />
+    <br />
+    <br />
     <div class="container-fluid">
         <div class="row px-xl-5">
             <div class="col-12">
@@ -45,24 +47,24 @@
                             <th>Sil</th>
                         </tr>
                     </thead>
-@*                     @foreach (var item in Model)
+                    @*                     @foreach (var item in Model)
                     {
-                        basketTotalPrice = Model.Sum(x => x.Price);
-                        tax = basketTotalPrice / 100 * 10;
-                        basketTotalPriceWithTax = basketTotalPrice + tax;
-                        count++;
-                        <tbody class="align-middle">
-                            <tr>
-                                <td class="align-middle">@count</td>
-                                <td class="align-middle">@item.ProductName</td>
-                                <td class="align-middle">@item.Count</td>
-                                <td class="align-middle">@item.Price</td>
-                                <td class="align-middle">@item.TotalPrice</td>
-                                <td class="align-middle btn-delete"><a class="btn btn-sm btn-danger" href="/Baskets/DeleteBasket/@item.BasketID">
-                                    <i class="fa fa-times"></i>
-                                </a></td>
-                            </tr>
-                        </tbody>
+                    basketTotalPrice = Model.Sum(x => x.Price);
+                    tax = basketTotalPrice / 100 * 10;
+                    basketTotalPriceWithTax = basketTotalPrice + tax;
+                    count++;
+                    <tbody class="align-middle">
+                    <tr>
+                    <td class="align-middle">@count</td>
+                    <td class="align-middle">@item.ProductName</td>
+                    <td class="align-middle">@item.Count</td>
+                    <td class="align-middle">@item.Price</td>
+                    <td class="align-middle">@item.TotalPrice</td>
+                    <td class="align-middle btn-delete"><a class="btn btn-sm btn-danger" href="/Baskets/DeleteBasket/@item.BasketID">
+                    <i class="fa fa-times"></i>
+                    </a></td>
+                    </tr>
+                    </tbody>
 
                     }  *@
 
@@ -121,14 +123,27 @@
                     </div>
                     <div class="pt-2">
                         <div class="d-flex justify-content-between mt-2">
+
                             <h5>Toplam Tutar</h5>
-                            <h5><span id="totalpricewithkdv">@basketTotalPriceWithTax.ToString("N2")</span>₺</h5>
+                            <h5><span id="Amout">@basketTotalPriceWithTax.ToString("N2")</span>₺</h5>
                         </div>
                         <br />
-                        <button id="btnchecked" class="btn btn-block btn-warning font-weight-bold my-3">Siparişi Tamamla</button>
+
                     </div>
+                    <form id="form1" method="post" action="/payment/index"
+                          enctype="application/x-www-form-urlencoded">
+
+                        <div>
+                            <input type="hidden" name="MenuTableID" value="@menuTableID" />
+                            <input type="hidden" name="Amount" value="@basketTotalPriceWithTax" />
+                            <input type="hidden" id="BasketData" name="BasketData" value="" />
+
+                            <input class="btn btn-block btn-warning font-weight-bold my-3" type="submit" value="Siparişi Tamamla" />
+                        </div>
+                    </form>
 
                 </div>
+
             </div>
         </div>
     </div>
@@ -142,3 +157,11 @@
 </body>
 
 </html>
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var basketData = @Html.Raw(Json.Serialize(Model));
+        document.getElementById('BasketData').value = JSON.stringify(basketData);
+    });
+</script>

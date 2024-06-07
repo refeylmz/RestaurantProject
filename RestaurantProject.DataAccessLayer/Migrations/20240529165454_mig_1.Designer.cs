@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RestaurantProject.DataAccessLayer.Concrete;
 
@@ -11,9 +12,10 @@ using RestaurantProject.DataAccessLayer.Concrete;
 namespace RestaurantProject.DataAccessLayer.Migrations
 {
     [DbContext(typeof(RestaurantProjectContext))]
-    partial class RestaurantProjectContextModelSnapshot : ModelSnapshot
+    [Migration("20240529165454_mig_1")]
+    partial class mig_1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -147,7 +149,7 @@ namespace RestaurantProject.DataAccessLayer.Migrations
 
                     b.HasKey("AboutID");
 
-                    b.ToTable("Abouts", (string)null);
+                    b.ToTable("Abouts");
                 });
 
             modelBuilder.Entity("RestaurantProject.EntityLayer.Entities.AppRole", b =>
@@ -285,7 +287,7 @@ namespace RestaurantProject.DataAccessLayer.Migrations
 
                     b.HasIndex("ProductID");
 
-                    b.ToTable("Baskets", (string)null);
+                    b.ToTable("Baskets");
                 });
 
             modelBuilder.Entity("RestaurantProject.EntityLayer.Entities.Booking", b =>
@@ -320,7 +322,7 @@ namespace RestaurantProject.DataAccessLayer.Migrations
 
                     b.HasKey("BookingID");
 
-                    b.ToTable("Bookings", (string)null);
+                    b.ToTable("Bookings");
                 });
 
             modelBuilder.Entity("RestaurantProject.EntityLayer.Entities.Category", b =>
@@ -340,7 +342,7 @@ namespace RestaurantProject.DataAccessLayer.Migrations
 
                     b.HasKey("CategoryID");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("RestaurantProject.EntityLayer.Entities.Contact", b =>
@@ -385,7 +387,7 @@ namespace RestaurantProject.DataAccessLayer.Migrations
 
                     b.HasKey("ContactID");
 
-                    b.ToTable("Contacts", (string)null);
+                    b.ToTable("Contacts");
                 });
 
             modelBuilder.Entity("RestaurantProject.EntityLayer.Entities.Discount", b =>
@@ -417,7 +419,7 @@ namespace RestaurantProject.DataAccessLayer.Migrations
 
                     b.HasKey("DiscountID");
 
-                    b.ToTable("Discounts", (string)null);
+                    b.ToTable("Discounts");
                 });
 
             modelBuilder.Entity("RestaurantProject.EntityLayer.Entities.Feature", b =>
@@ -454,7 +456,7 @@ namespace RestaurantProject.DataAccessLayer.Migrations
 
                     b.HasKey("FeatureID");
 
-                    b.ToTable("Features", (string)null);
+                    b.ToTable("Features");
                 });
 
             modelBuilder.Entity("RestaurantProject.EntityLayer.Entities.MenuTable", b =>
@@ -474,7 +476,7 @@ namespace RestaurantProject.DataAccessLayer.Migrations
 
                     b.HasKey("MenuTableID");
 
-                    b.ToTable("MenuTables", (string)null);
+                    b.ToTable("MenuTables");
                 });
 
             modelBuilder.Entity("RestaurantProject.EntityLayer.Entities.Message", b =>
@@ -513,7 +515,7 @@ namespace RestaurantProject.DataAccessLayer.Migrations
 
                     b.HasKey("MessageID");
 
-                    b.ToTable("Messages", (string)null);
+                    b.ToTable("Messages");
                 });
 
             modelBuilder.Entity("RestaurantProject.EntityLayer.Entities.MoneyCase", b =>
@@ -529,7 +531,7 @@ namespace RestaurantProject.DataAccessLayer.Migrations
 
                     b.HasKey("MoneyCaseID");
 
-                    b.ToTable("MoneyCases", (string)null);
+                    b.ToTable("MoneyCases");
                 });
 
             modelBuilder.Entity("RestaurantProject.EntityLayer.Entities.Notification", b =>
@@ -560,7 +562,7 @@ namespace RestaurantProject.DataAccessLayer.Migrations
 
                     b.HasKey("NotificationID");
 
-                    b.ToTable("Notifications", (string)null);
+                    b.ToTable("Notifications");
                 });
 
             modelBuilder.Entity("RestaurantProject.EntityLayer.Entities.Order", b =>
@@ -597,7 +599,7 @@ namespace RestaurantProject.DataAccessLayer.Migrations
 
                     b.HasIndex("MenuTableID");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("RestaurantProject.EntityLayer.Entities.OrderDetail", b =>
@@ -629,7 +631,7 @@ namespace RestaurantProject.DataAccessLayer.Migrations
 
                     b.HasIndex("ProductID");
 
-                    b.ToTable("OrderDetails", (string)null);
+                    b.ToTable("OrderDetails");
                 });
 
             modelBuilder.Entity("RestaurantProject.EntityLayer.Entities.Product", b =>
@@ -665,7 +667,7 @@ namespace RestaurantProject.DataAccessLayer.Migrations
 
                     b.HasIndex("CategoryID");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("RestaurantProject.EntityLayer.Entities.Slider", b =>
@@ -702,7 +704,7 @@ namespace RestaurantProject.DataAccessLayer.Migrations
 
                     b.HasKey("SliderID");
 
-                    b.ToTable("Sliders", (string)null);
+                    b.ToTable("Sliders");
                 });
 
             modelBuilder.Entity("RestaurantProject.EntityLayer.Entities.SocialMedia", b =>
@@ -727,7 +729,7 @@ namespace RestaurantProject.DataAccessLayer.Migrations
 
                     b.HasKey("SocialMediaID");
 
-                    b.ToTable("SocialMedias", (string)null);
+                    b.ToTable("SocialMedias");
                 });
 
             modelBuilder.Entity("RestaurantProject.EntityLayer.Entities.Testimonial", b =>
@@ -759,7 +761,7 @@ namespace RestaurantProject.DataAccessLayer.Migrations
 
                     b.HasKey("TestimonialID");
 
-                    b.ToTable("Testimonials", (string)null);
+                    b.ToTable("Testimonials");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>

@@ -1,15 +1,19 @@
-﻿using RestaurantProject.EntityLayer.Entities;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace RestaurantProject.DtoLayer.OrderDto
 {
-    public class ResultOrderDto
+    public class CreateOrderDto
     {
-        public int OrderID { get; set; }
-        public string MenuTableID { get; set; }
+
+
         public string Description { get; set; }
         public DateTime OrderDate { get; set; }
         public decimal TotalPrice { get; set; }
         public int AppUserId { get; set; }
-        public List<OrderDetail> OrderDetails { get; set; }
+        public int MenuTableID { get; set; }
     }
 }

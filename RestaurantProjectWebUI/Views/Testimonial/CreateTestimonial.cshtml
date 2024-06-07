@@ -1,9 +1,103 @@
 ﻿@model CreateTestimonialDto
 @{
-	ViewData["Title"] = "CreateTestimonial";
-	Layout = "~/Views/AdminLayout/Index.cshtml";
+    ViewData["Title"] = "CreateTestimonial";
+    Layout = null;
+    //Layout = "~/Views/AdminLayout/Index.cshtml";
 }
 
+
+<!DOCTYPE html>
+<html>
+
+@await Component.InvokeAsync("_UILayoutHeadComponentPartial")
+
+<body class="sub_page">
+
+    @await Component.InvokeAsync("_BookATableNavbarComponentPartial")
+
+    <!-- book section -->
+    <section class="book_section layout_padding">
+        <div class="container">
+            <div class="heading_container">
+                <h2>
+                    Müşteri Yorum Ekleme Ekranı
+                </h2>
+            </div>
+            <br />
+
+            <form class="form-detail" method="post">
+                
+
+                    <div class="row">
+                        <div class="col-md-8 mb-3">
+                            <label for="Name">Müşteri Adını Giriniz</label>
+                            <input type="text" class="form-control" asp-for="Name" id="Name">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 mb-3">
+                            <label for="Title">Müşteri Ünvanını Giriniz</label>
+                            <input type="text" class="form-control" asp-for="Title" id="Title">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 mb-3">
+                            <label for="ImageUrl">Müşteri Resim Dosya Yolunu Giriniz</label>
+                            <input type="file" class="form-control" asp-for="ImageUrl" id="ImageUrl">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 mb-3">
+                            <label for="Comment">Müşteri Yorumunu Giriniz</label>
+                            <input type="text" class="form-control" asp-for="Comment" id="Comment">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                    <div class="col-md-8 mb-3">
+                        <button class="btn btn-success">Müşteri Yorumunu Ekle</button>
+                    </div>
+               
+            </form>
+        </div>
+        <div class="col-md-6">
+        </div>
+    </section>
+    <!-- end book section -->
+    <!-- footer section -->
+    @await Component.InvokeAsync("_UILayoutFooterComponentPartial")
+    <!-- footer section -->
+    <!-- jQery -->
+    @await Component.InvokeAsync("_UILayoutScriptComponentPartial")
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*
 <div class="content">
 	<div class="container-fluid">
 		<h4 class="page-title">Müşteri Yorum İşlemleri</h4>
@@ -47,5 +141,5 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div> *@
 

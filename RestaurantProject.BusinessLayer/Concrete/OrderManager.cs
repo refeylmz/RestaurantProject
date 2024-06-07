@@ -25,7 +25,8 @@ namespace RestaurantProject.BusinessLayer.Concrete
 
         public void TAdd(Order entity)
         {
-            throw new NotImplementedException();
+            _orderDal.Add(entity);
+          
         }
 
         public void TDelete(Order entity)
@@ -41,6 +42,11 @@ namespace RestaurantProject.BusinessLayer.Concrete
         public List<Order> TGetListAll()
         {
             return _orderDal.GetListAll();
+        }
+
+        public List<Order> TGetWithOrderDetails()
+        {
+            return _orderDal.GetWithOrderDetails();
         }
 
         public decimal TLastOrderPrice()

@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
 }
 
 <div class="content">
@@ -19,7 +20,8 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Masa Adı</th>
+                                    <th scope="col">Masa ID</th>
+                                    <th scope="col">Ürünler</th>
                                     <th scope="col">Açıklama</th>
                                     <th scope="col">Sipariş Tarihi</th>
                                     <th scope="col">Toplam Ücret</th>
@@ -28,13 +30,24 @@
                             <tbody>
                                 @foreach (var item in Model)
                                 {
+                                    count++;
                                     <tr>
-                                        <th>@item.OrderID</th>
-                                        <td>@item.TableNumber</td>
+                                        <th>@count</th>
+                                        @* <th>@item.OrderID</th> *@
+                                        <td>@item.MenuTableID</td>
+                                        <td>
+                                            <ul>
+                                                @foreach (var detail in item.OrderDetails.Where(x => x.OrderID == item.OrderID))
+                                                {
+                                                    <li> 1  @detail.Product.ProductName</li>
+                                                }
+                                            </ul>
+                                        </td>
                                         <td>@item.Description</td>
                                         <td>@item.OrderDate.ToShortDateString()</td>
                                         <td>@item.TotalPrice</td>
                                     </tr>
+
                                 }
                             </tbody>
                         </table>

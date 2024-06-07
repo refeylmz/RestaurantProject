@@ -1,4 +1,7 @@
-﻿@{
+﻿@using RestaurantProject.DtoLayer.Payment;
+@model PaymentRequestDto
+
+@{
     Layout = null;
 }
 
@@ -9,20 +12,168 @@
 
 <body class="sub_page">
 
-    @await Component.InvokeAsync("_PaymentNavbarComponentPartial")
+    @await Component.InvokeAsync("_PaymentNavbarComponentPartial") 
 
     <!-- book section -->
     <section class="book_section layout_padding">
-        <div class="container">
+
+
+        @using (Html.BeginForm("Payment", "Payment", FormMethod.Post, new { @class = "form-horizontal" }))
+        {
+            <div class="container">
+                <div class="heading_container">
+                    <h2>ÖDEME EKRANI</h2>
+                </div>
+
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                @Html.Hidden("MenuTableID", Model.MenuTableID)
+
+                <div class="row">
+                    <div class="col-md-8 mb-3">
+                        <label>Ödenecek Tutar</label>
+                        @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.Total } })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-8 mb-3">
+                        <label>Kart Sahibi</label>
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-8 mb-3">
+                        <label>Kart Numarası</label>
+                        @Html.EditorFor(model => model.CardNumber, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CardNumber, "Kart Numarası alanı zorunludur.", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label>Son Kullanma Tarihi (Ay)</label>
+                        @Html.EditorFor(model => model.ExairationMonth, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ExairationMonth, "Son Kullanma Tarihi (Ay) alanı zorunludur.", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Son Kullanma Tarihi (Yıl)</label>
+                        @Html.EditorFor(model => model.ExairationYear, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ExairationYear, "Son Kullanma Tarihi (Yıl) alanı zorunludur.", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-8 mb-3">
+                        <label>CVC</label>
+                        @Html.EditorFor(model => model.CVC, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CVC, "CVC alanı zorunludur.", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <hr class="mb-4" />
+
+                <div class="row">
+                    <div class="col-md-8 mb-3">
+                        <button type="submit" class="btn btn-success btn-lg btn-block">Ödemeyi Tamamla</button>
+                    </div>
+                </div>
+
+                @ViewBag.Message
+            </div>
+        }
+
+
+
+
+
+
+
+
+
+
+
+    @*     @using (Html.BeginForm("Payment", "Payment", FormMethod.Post, new { @class = "form-horizontal" }))
+        {
+            <div class="control-group">
+                <label class="control-label" for="inputUsername">Toplam Fiyat</label>
+                <div class="controls">
+
+                    @Html.AntiForgeryToken()
+
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.Total } })
+
+                    @ViewBag.Message;
+
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="inputUsername">İsim</label>
+                <div class="controls">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="inputUsername">Kart Numarası</label>
+                <div class="controls">
+                    @Html.EditorFor(model => model.CardNumber, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CardNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="inputUsername">Son Geçerlilik Yılı</label>
+                <div class="controls">
+                    @Html.EditorFor(model => model.ExairationYear, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ExairationYear, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="inputUsername">Son Geçerlilik Ayı</label>
+                <div class="controls">
+                    @Html.EditorFor(model => model.ExairationMonth, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ExairationMonth, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="inputUsername">CVC</label>
+                <div class="controls">
+                    @Html.EditorFor(model => model.CVC, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CVC, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            @Html.Hidden("MenuTableID",Model.MenuTableID);
+            <div class="control-group">
+                <div class="controls">
+                    <button type="submit" class="btn btn-success">Ödemeyi Tamamla</button>
+                </div>
+            </div>
+
+        } *@
+
+
+
+        @* <div class="container">
             <div class="heading_container">
                 <h2>
                     ÖDEME EKRANI
                 </h2>
             </div>
+            @Html.Hidden("MenuTableID",Model.MenuTableID);
             <div class="row">
                 <div class="col-md-8 mb-3">
                     <label>Ödenecek Tutar</label>
-                    <input type="text" class="form-control" placeholder="Ödenecek Tutar" value="" />
+                    <input type="text" class="form-control" placeholder="Ödenecek Tutar" value="@Model.Amount" />
                 </div>
             </div>
             <div class="row">
@@ -69,7 +220,7 @@
 
 
 
-        </div>
+        </div> *@
     </section>
     <!-- end book section -->
     <!-- footer section -->
